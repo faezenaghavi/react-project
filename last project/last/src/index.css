@@ -1,0 +1,751 @@
+/* =================== فونت و تنظیمات پایه =================== */
+@font-face {
+  font-family: vazir;
+  src: url(./assets/font/persianfont/vazir-font-v18.0.0/Vazir-Light.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: vazir;
+  direction: rtl;
+}
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ========================================================= */
+/* =================== Header Component =================== */
+.header {
+  width: 100%;
+  height: 150px;
+}
+
+/* قسمت بالای هدر (نوار اعلان) */
+.part1 {
+  height: 75px;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #ff6600, #ffeb87);
+}
+
+.part1 span:hover{
+  color: #ff0004;
+  cursor: pointer;
+}
+
+.part1 a {
+  text-decoration: none;
+  color: white;
+}
+
+.part1 a em {
+  font-style: normal !important;
+}
+
+/* ناوبار (منوی بالای صفحه) */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  direction: rtl;
+  background-color: #ffffff;
+  padding: 10px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li {
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu li:hover {
+  color: #ff6600;
+}
+
+.navbar-button {
+  background-color: #ffffff;
+  color: rgb(18, 18, 18);
+  border: 1px solid;
+  padding: 0 20px;
+  border-radius: 50px;
+  width: 120px;
+  height: 40px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: vazir;
+}
+
+.navbar-button:hover {
+  background-color: #ff6600;
+  color: white;
+}
+
+/* بک‌گراند بلور کل صفحه هنگام باز بودن پاپ‌آپ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* جعبه فرم وسط صفحه */
+.login-modal {
+  background: white;
+  border-radius: 20px;
+  width: 400px;
+  padding: 30px 40px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.3s ease;
+  text-align: right;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form label {
+  font-weight: bold;
+  color: #333;
+}
+
+.login-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+}
+
+.submit-btn {
+  background: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-btn:hover {
+  background: #e25500;
+}
+
+.signup-text {
+  font-size: 14px;
+  text-align: center;
+}
+
+.signup-text a {
+  color: #ff6600;
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========================================================= */
+/* =================== SoldierPhoto Component =================== */
+.headerPhoto {
+  height: 400px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.headerPhoto img {
+  width: 100%;
+  display: block;
+}
+
+/* ========================================================= */
+/* =================== Productions Component =================== */
+
+/* عنوان بخش */
+.titleSection {
+  margin-top: 300px;
+  display: flex;
+  flex-direction: row;
+}
+
+.page-title {
+  font-size: 32px;
+  color: #0c0d0d;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* خط قرمز کنار عنوان */
+.red-line {
+  width: 500px;
+  height: 2px;
+  background: #ff0004;
+  margin: 46px 10px 10px 10px;
+  border-radius: 2px;
+}
+
+/* محتوای توضیح و تصاویر */
+.explainContainer {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.columnSec {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0 0 170px;
+}
+
+.rowContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.rowContainer img {
+  width: 200px;
+  height: 290px;
+}
+
+/* بخش عکس‌های کناری */
+.photoSec {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: row;
+}
+
+.photoSec img {
+  margin-left: 20px;
+}
+
+.grey-line,
+.grey-line2 {
+  width: 100%;
+  height: 1px;
+  background: #cccccc;
+  border-radius: 2px;
+}
+
+/* ========================================================= */
+/* =================== Courses Component =================== */
+
+.titleSection2 {
+  margin: 30px 50px 40px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.gray-line {
+  width: 150px;
+  height: 1px;
+  background: #cccccc;
+  margin: 30px 0px 40px 0px;
+}
+
+/* بخش پاراگراف و کارت‌ها */
+.rowContainer2 {
+  display: flex;
+  flex-direction: row;
+}
+
+.paragraph {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 15px 1px 31px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 30px 55px 0px 15px;
+}
+
+.item1 {
+  margin-left: 50px;
+}
+
+.item1 h2 {
+  font-size: 20px;
+}
+
+.rowSection {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.rowSection p {
+  margin-top: 10px;
+  color: #333;
+}
+
+/* ========================================================= */
+/* =================== News Component =================== */
+
+.section1,
+.section2 {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+}
+
+.explainingSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.explainingSection p {
+  color: #002bae;
+  margin: 10px 0px 0px 95px;
+}
+
+.war {
+  margin-top: 25px;
+  width: 300px;
+  height: 275px;
+}
+
+.warSec {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal-line{
+  width: 1px;
+  height: 305px;
+  background: #CCCCCC;
+}
+/* ========================================================= */
+/* =================== States Component =================== */
+
+.stateSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logoSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo2 {
+  width: 101px;
+  height: 79px;
+  margin-top: 30px;
+}
+
+.logoSection p {
+  font-size: 15px;
+  color: #535353;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.middleSection {
+  margin-top: 30px;
+}
+
+.middleSection p {
+  margin: 40px 0px 10px 0px;
+  font-size: 12px;
+  color: #535353;
+  text-align: center;
+}
+
+.greyLine {
+  width: 385px;
+  height: 1px;
+  background: #cccccc;
+  margin-top: 80px;
+}
+
+.lastSection {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+.listSection ul{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 30px;
+}
+.listSection h2{
+  display: flex;
+  margin-right: 10px;
+}
+
+
+/* second page */
+
+.firstPart{
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  direction: rtl;
+  background-color: #ffffff;
+  padding: 10px 30px;
+  
+}
+
+.rightPart{
+  display: flex;
+  align-items: center;
+  gap: 30px;;
+}
+.ulSec{
+ list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+.ulSec li{
+   cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+}
+.btn-sec{
+  background-color: #ffffff;
+  color: rgb(18, 18, 18);
+  border: 1px solid;
+  padding: 0 20px;
+  border-radius: 50px;
+  width: 120px;
+  height: 40px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: vazir;
+}
+.btn-sec:hover{
+  background-color: #fb7216;
+  color: #ffffff;
+  box-shadow: 0 0 0 0.5px;
+}
+.navLine{
+  width: 100%;
+  height: 1px;
+  background: #535353;
+}
+.titleSection3{
+  display: flex;
+  flex-direction: column; 
+}
+
+.image-container {
+  position: relative;
+  margin-top: 20px;
+}
+
+.image-container img{
+  width: 100%;
+  border: none;
+  display: block;
+  height: auto;
+}
+
+.image-container::before,
+.image-container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px; 
+  z-index: 2;
+  pointer-events: none;
+}
+
+.image-container::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(255, 253, 253, 0.886), transparent);
+}
+
+.image-container::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(255, 253, 253, 0.907), transparent);
+}
+
+
+.mainSection{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.mainSection p{
+  margin-top: 10px;
+}
+
+.circle {
+   position: absolute;
+  top: 50%;         
+  left: 50%;        
+  transform: translate(-50%, -50%); 
+  width: 80px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.circle:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%); 
+  font-size: 28px;
+  color: #FF6600;
+}
+
+.secondPage{
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  gap: 150px;
+}
+
+.photo-stack {
+  position: relative;
+  width: 300px; /* عرض کلی بخش */
+  height: 200px; /* ارتفاع کلی بخش */
+  margin-right: 100px;
+}
+
+/* تنظیمات عمومی عکس‌ها */
+.photo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+/* عکس وسط (اصلی) */
+.photo1 {
+  z-index: 3;
+  transform: rotate(0deg) translateY(0);
+}
+
+/* عکس سمت چپ (کمی چرخیده و جابه‌جا) */
+.photo2 {
+  z-index: 2;
+  transform: rotate(-10deg) translateX(-25px) translateY(10px);
+}
+
+/* عکس سمت راست (برعکس) */
+.photo3 {
+  z-index: 1;
+  transform: rotate(10deg) translateX(25px) translateY(10px);
+}
+
+/* افکت hover زیبا */
+.photo-stack:hover .photo {
+  opacity: 0.8;
+  transform: scale(0.95);
+}
+
+.photo-stack:hover .photo1 {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.description{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+}
+.description h2{
+  margin: 25px 0px 0px 0px;
+}
+.line1{
+   width: 496px;
+   height: 1px;
+   background: #CCCCCC;
+   margin: 46px 10px 10px 10px;
+   border-radius: 2px;
+}
+
+.arrow-left {
+  width: 50px;
+  height: 50px;
+  background-color: #eeeeee67;      
+  border: none;      
+  border-radius: 50%;           
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  left: 70px;            
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.arrow-left:hover {
+  background-color: #ff6600;   
+  color: white;
+  border-color: #ff6600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.arrow {
+  font-size: 28px;
+  color: #333;                  /* رنگ فلش */
+  transition: color 0.3s ease;
+}
+
+.arrow-left:hover .arrow {
+  color: white;
+}
+
+
+.cardSectionn{
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px 10px 10px 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.infos{
+  text-align: center;
+   margin:10px 20px 0px 15px;
+}
+.infos img{
+width: 70px;
+height: 70px;
+}
+.infos h2{
+  font-size: 14px;
+}
+.infos p{
+  font-size: 12px;
+  color: #444444;
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 768px) {
+  .app{
+  min-width: 1438px;
+  }
+  
+  .appSec{
+     min-width: 1074px;}
+
+  .header{
+    width: 100%;
+  }
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+   
+  }
+
+  .rowContainer {
+    flex-direction: row;
+    height: 200px;
+  }
+  .columnSec {
+    height: 100px;
+  }
+  .photoSec {
+    flex-direction: row;
+  }
+
+  .cardContainer {
+    flex-direction: row;
+  }
+
+  .Container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .section1, .section2 {
+    flex-direction: row;
+  }
+
+  .stateSection {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
