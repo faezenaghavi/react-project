@@ -816,6 +816,7 @@ height: 70px;
     display: flex;
     align-items:start;
     font-size: 14px;
+    gap: 0px;
   }
   .headerPhoto {
     height: 130px;
@@ -838,7 +839,7 @@ height: 70px;
     transition: background-color 0.3s ease;
     font-family: vazir;
     font-size: 10px;
-    margin-right: 17px;
+    margin-left: 17px;
   }
   /* همه بخش‌های دیگر: عمودی (زیر هم) */
   .rowContainer,
@@ -1710,12 +1711,7 @@ height: 70px;
     display: none;
   }
 
-  .greyLine {
-    width: 100%;
-    height: 1px;
-    background: #ddd;
-    margin: 12px 0;
-  }
+  
 
   /* --- عمومی --- */
   * {
