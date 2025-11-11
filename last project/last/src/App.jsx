@@ -1,5 +1,9 @@
 import { useState } from "react";
 import Information from "./information.jsx";
+import UserPanel from "./UserPanel.jsx";
+import { useEffect, useRef } from "react";
+
+// تصاویر
 import logo from "./assets/picture/logo.png";
 import headerPhoto from "./assets/picture/soldier.png";
 import mehdi from "./assets/picture/mehdi.png";
@@ -19,22 +23,20 @@ export default function App() {
 
   return (
     <div>
+      {/* صفحه اصلی */}
       {page === "home" && (
         <div className="app">
-          <Header setPage={setPage} setShowModal={setShowModal} />
+          <Header  setShowModal={setShowModal} />
           <SoldierPhoto />
-          <Productions />
+          <Productions setPage={setPage} />
           <Courses />
           <News />
           <States />
 
-          {/* پاپ آپ عضویت */}
+          {/* پاپ‌آپ ورود */}
           {showModal && (
             <div className="modal-overlay" onClick={() => setShowModal(false)}>
-              <div
-                className="login-modal"
-                onClick={(e) => e.stopPropagation()}
-              >
+              <div className="login-modal" onClick={(e) => e.stopPropagation()}>
                 <button
                   className="close-btn"
                   onClick={() => setShowModal(false)}
@@ -42,17 +44,22 @@ export default function App() {
                   ✖
                 </button>
                 <h2>ورود / عضویت</h2>
-                <form className="login-form">
+                <form
+                  className="login-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setShowModal(false);
+                    setPage("panel"); // رفتن به صفحه پنل کاربری
+                  }}
+                >
                   <label>ایمیل:</label>
                   <input
                     type="email"
                     placeholder="example@email.com"
                     required
                   />
-
                   <label>رمز عبور:</label>
                   <input type="password" placeholder="******" required />
-
                   <button type="submit" className="submit-btn">
                     ورود
                   </button>
@@ -66,20 +73,20 @@ export default function App() {
         </div>
       )}
 
-      
+      {/* صفحه اطلاعات */}
       {page === "information" && <Information setPage={setPage} />}
+
+      {/* صفحه پنل کاربری */}
+      {page === "panel" && <UserPanel setPage={setPage} />}
     </div>
   );
 }
 
-
 // ==================== Header ====================
-function Header({ setPage , setShowModal}) {
+function Header({ setPage, setShowModal }) {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -87,13 +94,11 @@ function Header({ setPage , setShowModal}) {
       <div className="part1">
         <a
           href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            setPage("information"); 
-          }}
+          
         >
           <em>
-            جشنواره بین المللی فیلم مقاومت برگزار میکند.<span>(برای اطلاعات بیشتر کلیک کنید)</span>
+            جشنواره بین‌المللی فیلم مقاومت برگزار می‌کند.
+            <span>(برای اطلاعات بیشتر کلیک کنید)</span>
           </em>
         </a>
       </div>
@@ -104,19 +109,20 @@ function Header({ setPage , setShowModal}) {
               <img src={logo} alt="logo" className="logo" />
             </div>
             <ul className="navbar-menu">
-              <li onClick={() => scrollToSection("productions")}>آثار و تولیدات</li>
-              <li onClick={() => scrollToSection("Courses")} >آموزش</li>
-              <li onClick={() => scrollToSection("News")} >اخبار و رویداد ها</li>
-              <li onClick={() => scrollToSection("States")} >درباره ما</li>
+              <li onClick={() => scrollToSection("productions")}>
+                آثار و تولیدات
+              </li>
+              <li onClick={() => scrollToSection("Courses")}>آموزش</li>
+              <li onClick={() => scrollToSection("News")}>اخبار</li>
+              <li onClick={() => scrollToSection("States")}>درباره ما</li>
               <li onClick={() => scrollToSection("States")}>تماس با ما</li>
             </ul>
           </div>
           <button className="navbar-button" onClick={() => setShowModal(true)}>
-            ورود/عضویت
+            ورود / عضویت
           </button>
-        </nav>  
+        </nav>
       </div>
-      
     </div>
   );
 }
@@ -131,7 +137,26 @@ function SoldierPhoto() {
 }
 
 // ==================== Productions ====================
-function Productions() {
+function Productions({setPage}) {
+  
+   const imageRef = useRef(null);
+    useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          imageRef.current.classList.add("animate-mehdi");
+        }
+      },
+      { threshold: 0.3 } // triggers when 30% of the section is visible
+    );
+
+    observer.observe(imageRef.current);
+
+    return () => {
+      if (imageRef.current) observer.unobserve(imageRef.current);
+    };
+  }, []);
+
   return (
     <div id="productions">
       <div className="titleSection">
@@ -142,7 +167,7 @@ function Productions() {
       <div className="explainContainer">
         <div className="grey-line"></div>
         <div className="rowContainer">
-          <img src={mehdi} alt="mehdi" />
+          <img ref={imageRef} src={mehdi} alt="mehdi"  className="mehdi-image" />
           <div className="columnSec">
             <h3>موقعیت مهدی</h3>
             <p>
@@ -151,7 +176,11 @@ function Productions() {
               روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای<br />
               شرایط فعلی تکنولوژی مورد نیاز.
             </p>
-            <a href="#">بیشتر...</a>
+            <a href="#"
+            onClick={(e) => {
+            e.preventDefault();
+            setPage("information");}}
+            >بیشتر...</a>
           </div>
           <div className="photoSec">
             <img src={mehdi2} alt="" />
@@ -171,44 +200,35 @@ function Courses() {
     <div id="Courses" className="news" style={{ marginTop: "150px" }}>
       <div className="titleSection2">
         <div className="gray-line"></div>
-        <h1>دوره های ما</h1>
+        <h1>دوره‌های ما</h1>
       </div>
       <div className="grey-line"></div>
       <div className="rowContainer2">
         <p className="paragraph">
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از<br />
-          صنعت چاپ، و با استفاده از طراحان گرافیک است، <br />
-          چاپگرها و متون بلکه روزنامه و مجله
+          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+          استفاده از طراحان گرافیک است.
         </p>
         <div className="horizontal-line"></div>
         <div className="cardContainer">
-          <div className="item1">
-            <img src={camera} alt="camera" />
-            <h2>مسترکلاس جرات فیلم‌سازی</h2>
-            <div className="rowSection">
-              <img src={ali} alt="picture" />
-              <p>علی رضوی</p>
-            </div>
-          </div>
-          <div className="item1">
-            <img src={camera} alt="camera" />
-            <h2>مسترکلاس جرات فیلم‌سازی</h2>
-            <div className="rowSection">
-              <img src={ali} alt="picture" />
-              <p>علی رضوی</p>
-            </div>
-          </div>
-          <div className="item1">
-            <img src={camera} alt="camera" />
-            <h2>مسترکلاس جرات فیلم‌سازی</h2>
-            <div className="rowSection">
-              <img src={ali} alt="picture" />
-              <p>علی رضوی</p>
-            </div>
-          </div>
+          <CourseCard />
+          <CourseCard />
+          <CourseCard />
         </div>
       </div>
       <div className="grey-line"></div>
+    </div>
+  );
+}
+
+function CourseCard() {
+  return (
+    <div className="item1">
+      <img src={camera} alt="camera" />
+      <h2>مسترکلاس جرات فیلم‌سازی</h2>
+      <div className="rowSection">
+        <img src={ali} alt="picture" />
+        <p>علی رضوی</p>
+      </div>
     </div>
   );
 }
@@ -301,25 +321,24 @@ function States() {
         <div className="logoSection">
           <img src={logo} alt="logo" className="logo2" />
           <p>
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت <br />
-            چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه
-            <br />
-            روزنامه و مجله
+            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ<br />
+            و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه <br />
+             روزنامه و مجله
           </p>
         </div>
         <div className="horizontal-line"></div>
         <div className="middleSection">
           <div className="listSection">
-            <h2>بخش های سایت</h2>
+            <h2>بخش‌های سایت</h2>
             <ul>
               <li>درباره ما</li>
               <li>تماس با ما</li>
-              <li>اخبار و رویداد ها</li>
+              <li>اخبار و رویدادها</li>
             </ul>
           </div>
           <div className="greyLine"></div>
           <p>
-            کلیه حقوق برای انجمن سینمای بنیاد رواییت فتح محفوظ است
+            کلیه حقوق برای انجمن سینمای بنیاد روایت فتح محفوظ است.
             <br />
             ۱۳۶۰ - ۱۴۰۴
           </p>
